@@ -1,0 +1,4 @@
+line-length = 120
+respect-gitignore = true
+select = ["ALL"]
+src = ["src"]
