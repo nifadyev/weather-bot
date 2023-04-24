@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "weather-bot"
+version = "0.1.0"
+description = "Telegram Bot with manual and daily weather reports from OpenWeatherMap"
+authors = ["Vadim Nifadev <drcs_velde@simplelogin.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "weather_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.0"
+python-telegram-bot = {extras = ["http2"], version = "^20.2"}
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.262"
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']

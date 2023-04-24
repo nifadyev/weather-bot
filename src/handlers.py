@@ -1,0 +1,36 @@
+from telegram import Update
+from telegram.ext import ContextTypes
+from telegram.constants import ParseMode
+from weather_services import retrieve_weather_info
+
+weather_now_template = (
+    "\<emoji placeholder\> *{description}* \n"
+    "*Feels like*: {current_feels_like} ℃ \n"
+    "Today: {today_morning_feels_like} ℃/ {today_day_feels_like} ℃/ {today_night_feels_like} ℃ \n"
+    "Today weather: {today_description} \n"
+    "Alerts \[{alerts_count}\]{first_alert_description}"
+)
+
+
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f"Hello {update.effective_user.first_name}")
+
+
+async def now(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    weather_data = await retrieve_weather_info()
+    message = weather_now_template.format(
+        current_feels_like=int(weather_data["now"]["feels_like"]),
+        today_morning_feels_like=int(weather_data["today"]["morning_feels_like"]),
+        today_day_feels_like=int(weather_data["today"]["day_feels_like"]),
+        today_night_feels_like=int(weather_data["today"]["night_feels_like"]),
+        today_description=weather_data["today"]["description"].title(),
+        description=weather_data["now"]["description"].title(),
+        alerts_count=len(weather_data["alerts"]),
+        first_alert_description=(
+            f': {weather_data["alerts"][0]["description"]}'.title()
+            if weather_data["alerts"]
+            else ""
+        ),
+    )
+
+    await update.message.reply_text(message, parse_mode=ParseMode.MARKDOWN_V2)
