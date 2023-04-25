@@ -2,6 +2,7 @@ from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
 
+from callbacks import today_weather
 from weather_services import retrieve_weather_info
 
 weather_now_template = (
@@ -46,4 +47,13 @@ async def now(update: Update, context: ContextTypes.DEFAULT_TYPE):
         ),
     )
 
-    await update.message.reply_text(message, parse_mode=ParseMode.MARKDOWN_V2)
+    await context.bot.send_message(
+        chat_id=update.effective_chat.id, text=message, parse_mode=ParseMode.MARKDOWN_V2
+    )
+
+
+async def enable_daily(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    chat_id = update.effective_chat.id
+    await context.bot.send_message(chat_id, text="Daily weather forecast is enabled")
+
+    context.job_queue.run_once(today_weather, 10, chat_id=chat_id)
