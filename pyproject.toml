@@ -10,7 +10,7 @@ packages = [{include = "weather_bot"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 python-dotenv = "^1.0.0"
-python-telegram-bot = {extras = ["http2"], version = "^20.2"}
+python-telegram-bot = {extras = ["http2", "job-queue"], version = "^20.2"}
 
 
 [tool.poetry.group.dev.dependencies]
