@@ -1,10 +1,17 @@
+import logging
+
 from telegram.ext import ApplicationBuilder, CommandHandler
 
 from config import TELEGRAM_BOT_TOKEN
 from handlers import hello, help, now, start
 
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
 
-def main():
+
+def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 
     application.add_handler(CommandHandler("hello", hello))
@@ -15,4 +22,5 @@ def main():
     application.run_polling()
 
 
-main()
+if __name__ == "__main__":
+    main()
