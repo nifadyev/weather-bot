@@ -16,17 +16,13 @@ weather_now_template = (
 
 # /start - begins the interaction with the user, like sending an introductory message. This command can also be used to pass additional parameters to the bot (see Deep Linking).
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text="Welcome to Weather bot!",
-    )
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Welcome to Weather bot!")
 
 
 # /help - returns a help message, like a short text about what your bot can do and a list of commands.
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text="Please use Menu to see available commands",
+        chat_id=update.effective_chat.id, text="Please use Menu to see available commands"
     )
 
 
