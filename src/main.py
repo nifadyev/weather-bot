@@ -3,7 +3,7 @@ import logging
 from telegram.ext import ApplicationBuilder, CommandHandler
 
 from config import TELEGRAM_BOT_TOKEN
-from handlers import hello, help, now, start
+from handlers import help, now, start
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -14,7 +14,6 @@ logging.basicConfig(
 def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 
-    application.add_handler(CommandHandler("hello", hello))
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help))
     application.add_handler(CommandHandler("now", now))

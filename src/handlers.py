@@ -1,6 +1,7 @@
 from telegram import Update
-from telegram.ext import ContextTypes
 from telegram.constants import ParseMode
+from telegram.ext import ContextTypes
+
 from weather_services import retrieve_weather_info
 
 weather_now_template = (
@@ -10,10 +11,6 @@ weather_now_template = (
     "Today weather: {today_description} \n"
     "Alerts \[{alerts_count}\]{first_alert_description}"
 )
-
-
-async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(f"Hello {update.effective_user.first_name}")
 
 
 # /start - begins the interaction with the user, like sending an introductory message. This command can also be used to pass additional parameters to the bot (see Deep Linking).
