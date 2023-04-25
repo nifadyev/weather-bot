@@ -6,11 +6,11 @@ from callbacks import today_weather
 from weather_services import retrieve_weather_info
 
 weather_now_template = (
-    "\<emoji placeholder\> *{description}* \n"
+    "\\<emoji placeholder\\> *{description}* \n"
     "*Feels like*: {current_feels_like} ℃ \n"
     "Today: {today_morning_feels_like} ℃/ {today_day_feels_like} ℃/ {today_night_feels_like} ℃ \n"
     "Today weather: {today_description} \n"
-    "Alerts \[{alerts_count}\]{first_alert_description}"
+    "Alerts \\[{alerts_count}\\]{first_alert_description}"
 )
 
 
