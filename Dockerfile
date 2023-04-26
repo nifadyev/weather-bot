@@ -16,6 +16,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get --no-install-recommends -y install \
     && apt-get clean
 
+RUN addgroup --system bot-admin && adduser --system --group bot-admin
+
+USER bot-admin
+
 # Install python dependencies
 COPY requirements.txt .
 ARG ENVIRONMENT
