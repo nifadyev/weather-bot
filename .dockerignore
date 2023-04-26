@@ -1,0 +1,17 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI - TODO
+
+# Docker
+docker-compose.yml
+Dockerfile
+.docker
+.dockerignore
+
+.vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/

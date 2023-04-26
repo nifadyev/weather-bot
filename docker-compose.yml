@@ -1,0 +1,15 @@
+services:
+  server:
+    container_name: weather-bot
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+    volumes:
+      - ./:/weather-bot/
+    command: python src/main.py
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
