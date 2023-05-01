@@ -5,6 +5,7 @@ from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
 
 from callbacks import today_weather
+from src.constants import DAILY_FORECAST_UTC_HOUR
 from weather_services import retrieve_weather_info
 
 weather_now_template = (
@@ -54,4 +55,4 @@ async def enable_daily(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
     await context.bot.send_message(chat_id, text="Daily weather forecast is enabled")
 
-    context.job_queue.run_daily(today_weather, time=time(hour=6), chat_id=chat_id)
+    context.job_queue.run_daily(today_weather, time=time(hour=DAILY_FORECAST_UTC_HOUR), chat_id=chat_id)
