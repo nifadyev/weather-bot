@@ -42,9 +42,11 @@ def parse_response(raw_response: dict) -> dict:
             # Or just add warning if strong wind with bad destination
             "wind_destination": raw_response["current"]["wind_deg"],
             "description": raw_response["current"]["weather"][0]["description"],
+            "icon_id": raw_response["current"]["weather"][0]["icon"],
         },
         "today": {
             "description": raw_response["daily"][0]["weather"][0]["description"],
+            "icon_id": raw_response["daily"][0]["weather"][0]["icon"],
             "morning_feels_like": raw_response["daily"][0]["feels_like"]["morn"],
             "day_feels_like": raw_response["daily"][0]["feels_like"]["day"],
             "evening_feels_like": raw_response["daily"][0]["feels_like"]["eve"],

@@ -5,14 +5,14 @@ from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
 
 from callbacks import today_weather
-from src.constants import DAILY_FORECAST_UTC_HOUR
+from constants import DAILY_FORECAST_UTC_HOUR, ICON_ID_TO_EMOJI
 from weather_services import retrieve_weather_info
 
 weather_now_template = (
-    "\\<emoji placeholder\\> *{description}* \n"
+    "{icon} *{description}* \n"
     "*Feels like*: {current_feels_like} ℃ \n"
     "Today: {today_morning_feels_like} ℃/ {today_day_feels_like} ℃/ {today_night_feels_like} ℃ \n"
-    "Today weather: {today_description} \n"
+    "Today weather: {today_icon} {today_description} \n"
     "Alerts \\[{alerts_count}\\]{first_alert_description}"
 )
 
@@ -37,7 +37,11 @@ async def now(update: Update, context: ContextTypes.DEFAULT_TYPE):
         today_day_feels_like=int(weather_data["today"]["day_feels_like"]),
         today_night_feels_like=int(weather_data["today"]["night_feels_like"]),
         today_description=weather_data["today"]["description"].title(),
+        today_icon=ICON_ID_TO_EMOJI.get(
+            weather_data["today"]["icon_id"], ICON_ID_TO_EMOJI["default"]
+        ),
         description=weather_data["now"]["description"].title(),
+        icon=ICON_ID_TO_EMOJI.get(weather_data["now"]["icon_id"], ICON_ID_TO_EMOJI["default"]),
         alerts_count=len(weather_data["alerts"]),
         first_alert_description=(
             f': {weather_data["alerts"][0]["description"]}'.title()
@@ -55,4 +59,6 @@ async def enable_daily(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
     await context.bot.send_message(chat_id, text="Daily weather forecast is enabled")
 
-    context.job_queue.run_daily(today_weather, time=time(hour=DAILY_FORECAST_UTC_HOUR), chat_id=chat_id)
+    context.job_queue.run_daily(
+        today_weather, time=time(hour=DAILY_FORECAST_UTC_HOUR), chat_id=chat_id
+    )
