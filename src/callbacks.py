@@ -2,24 +2,15 @@ from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
 from telegram.helpers import escape_markdown
 
-from constants import ICON_ID_TO_EMOJI
+from constants import ICON_ID_TO_EMOJI, TODAY_WEATHER_TEMPLATE
 from weather_services import retrieve_weather_info
-
-weather_today_template = (
-    "{icon} *{description}* \n"
-    "Temperature: {morning_feels_like} ℃/ {day_feels_like} ℃/ {night_feels_like} ℃ \n"
-    "UV Index: {uv_index} \n"
-    "Humidity: {humidity}%\n"
-    "Wind: {wind_speed} M/sec\n"
-    "Alerts \\[{alerts_count}\\]{first_alert_description}"
-)
 
 
 async def today_weather(context: ContextTypes.DEFAULT_TYPE):
     weather_data = await retrieve_weather_info()
     today_weather_info = weather_data["today"]
 
-    message = weather_today_template.format(
+    message = TODAY_WEATHER_TEMPLATE.format(
         icon=ICON_ID_TO_EMOJI.get(today_weather_info["icon_id"], ICON_ID_TO_EMOJI["default"]),
         description=today_weather_info["description"].title(),
         morning_feels_like=int(today_weather_info["morning_feels_like"]),

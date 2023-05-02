@@ -1,6 +1,24 @@
 from typing import Final
 
 DAILY_FORECAST_UTC_HOUR = 5
+NOW_WEATHER_TEMPLATE: str = (
+    "{icon} *{description}* \n"
+    "*Feels like*: {current_feels_like} ℃ \n"
+    "Today: {today_morning_feels_like} ℃/ {today_day_feels_like} ℃/ {today_night_feels_like} ℃ \n"
+    "Today weather: {today_icon} {today_description} \n"
+    "Alerts \\[{alerts_count}\\]{first_alert_description}"
+)
+
+TODAY_WEATHER_TEMPLATE: str = (
+    "{icon} *{description}* \n"
+    "Temperature: {morning_feels_like} ℃/ {day_feels_like} ℃/ {night_feels_like} ℃ \n"
+    "UV Index: {uv_index} \n"
+    "Humidity: {humidity}%\n"
+    "Wind: {wind_speed} M/sec\n"
+    "Alerts \\[{alerts_count}\\]{first_alert_description}"
+)
+
+DAILY_FORECAST_UTC_HOUR: Final[int] = 5
 
 ICON_ID_TO_EMOJI: Final[dict] = {
     "01d": "☀",
