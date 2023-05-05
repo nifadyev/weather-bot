@@ -1,8 +1,16 @@
+# Disable echoing executed statements for specific commands
+.SILENT: init
 .DEFAULT_GOAL := help
 
-## Create required files and configs
-init:
-	touch .env
+
+init:  ## Create required files and configs
+ifneq ("$(wildcard .env)","")
+	echo ".env file exists, skipping"
+else
+	cp .env.example .env
+	sed -i 's/ENVIRONMENT=development/ENVIRONMENT=production/g' .env
+endif
+
 
 install:  ## Production installation
 	make init
