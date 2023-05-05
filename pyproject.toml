@@ -16,6 +16,7 @@ python-telegram-bot = {extras = ["http2", "job-queue"], version = "^20.2"}
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.262"
 black = "^23.3.0"
+pre-commit = "^3.3.1"
 
 [build-system]
 requires = ["poetry-core"]

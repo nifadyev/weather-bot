@@ -1,0 +1,38 @@
+default_stages: [commit]
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: mixed-line-ending
+# Spell Checker
+-   repo: https://github.com/crate-ci/typos
+    rev: v1.14.9
+    hooks:
+    -   id: typos
+        args: []
+# Git commit linter
+-   repo: https://github.com/jorisroovers/gitlint
+    rev:  v0.18.0
+    hooks:
+    -   id: gitlint
+# Detect hardcoded secrets
+-   repo: https://github.com/zricethezav/gitleaks
+    rev: v8.16.3
+    hooks:
+      - id: gitleaks
+-   repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        # Workaround for VSCode (it does not support venv inside hooks)
+        # https://github.com/microsoft/vscode-python/issues/10165
+        entry: python3.11 -m poetry run ruff
+        language: system
+        types: [python]
+      - id: black
+        name: black
+        entry: python3.11 -m poetry run black
+        language: system
+        types: [python]
