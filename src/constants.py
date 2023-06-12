@@ -1,6 +1,5 @@
 from typing import Final
 
-DAILY_FORECAST_UTC_HOUR = 5
 NOW_WEATHER_TEMPLATE: str = (
     "{icon} *{description}* \n"
     "*Feels like*: {current_feels_like} ℃ \n"
@@ -18,7 +17,7 @@ TODAY_WEATHER_TEMPLATE: str = (
     "Alerts \\[{alerts_count}\\]{first_alert_description}"
 )
 
-DAILY_FORECAST_UTC_HOUR: Final[int] = 5
+DAILY_FORECAST_UTC_HOUR: Final[int] = 4
 
 ICON_ID_TO_EMOJI: Final[dict] = {
     "01d": "☀",
