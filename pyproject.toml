@@ -11,6 +11,7 @@ packages = [{include = "weather_bot"}]
 python = "^3.11"
 python-dotenv = "^1.0.0"
 python-telegram-bot = {extras = ["http2", "job-queue"], version = "^20.2"}
+pydantic = "^1.10.9"
 
 
 [tool.poetry.group.dev.dependencies]
