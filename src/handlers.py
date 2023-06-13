@@ -24,21 +24,21 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def now(update: Update, context: ContextTypes.DEFAULT_TYPE):
     weather_data = await retrieve_weather_info()
     message = NOW_WEATHER_TEMPLATE.format(
-        current_feels_like=int(weather_data["now"]["feels_like"]),
-        today_morning_feels_like=int(weather_data["today"]["morning_feels_like"]),
-        today_day_feels_like=int(weather_data["today"]["day_feels_like"]),
-        today_night_feels_like=int(weather_data["today"]["night_feels_like"]),
-        today_description=weather_data["today"]["description"].title(),
+        current_feels_like=weather_data.current.feels_like,
+        today_morning_feels_like=weather_data.daily[0].feels_like.morning,
+        today_day_feels_like=weather_data.daily[0].feels_like.day,
+        today_night_feels_like=weather_data.daily[0].feels_like.night,
+        today_description=weather_data.daily[0].summary,
         today_icon=ICON_ID_TO_EMOJI.get(
-            weather_data["today"]["icon_id"], ICON_ID_TO_EMOJI["default"]
+            weather_data.daily[0].weather[0].icon_id, ICON_ID_TO_EMOJI["default"]
         ),
-        description=weather_data["now"]["description"].title(),
-        icon=ICON_ID_TO_EMOJI.get(weather_data["now"]["icon_id"], ICON_ID_TO_EMOJI["default"]),
-        alerts_count=len(weather_data["alerts"]),
+        description=weather_data.current.weather[0].description,
+        icon=ICON_ID_TO_EMOJI.get(
+            weather_data.current.weather[0].icon_id, ICON_ID_TO_EMOJI["default"]
+        ),
+        alerts_count=len(weather_data.alerts),
         first_alert_description=(
-            f': {weather_data["alerts"][0]["description"]}'.title()
-            if weather_data["alerts"]
-            else ""
+            f": {weather_data.alerts[0].description}" if weather_data.alerts else ""
         ),
     )
 
