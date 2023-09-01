@@ -6,10 +6,11 @@ services:
       dockerfile: Dockerfile
       args:
         - ENVIRONMENT=${ENVIRONMENT}
+      tags:
+        - "weather-bot:${VERSION}"
     volumes:
       - ./:/weather-bot/
     command: python src/main.py
-    env_file:
-      - .env
+    env_file: .env
     ports:
       - 8000:8000
