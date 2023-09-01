@@ -16,7 +16,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get --no-install-recommends -y install \
     && apt-get clean
 
-RUN addgroup --system bot-admin && adduser --system --group bot-admin
+RUN addgroup --system bot-admin && adduser --system --group --home /home/bot-admin bot-admin
 
 USER bot-admin
 
