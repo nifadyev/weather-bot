@@ -2,7 +2,7 @@ import logging
 
 from telegram.ext import ApplicationBuilder, CommandHandler
 
-from config import TELEGRAM_BOT_TOKEN
+from config import TELEGRAM_BOT_TOKEN, Settings
 from handlers import enable_daily, help, now, start
 
 logging.basicConfig(
@@ -12,6 +12,8 @@ logging.basicConfig(
 
 def main() -> None:
     application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    # print(Settings(_env_file='.env').dict())
+    # application = ApplicationBuilder().token(str(Settings.bot_token)).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("help", help))
