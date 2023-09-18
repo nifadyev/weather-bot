@@ -22,6 +22,7 @@ USER bot-admin
 
 # Install python dependencies
 COPY requirements.txt .
+COPY requirements-dev.txt .
 ARG ENVIRONMENT
 RUN --mount=type=cache,target=/root/.cache \
     if [ "$ENVIRONMENT" = "production" ] ; then \
