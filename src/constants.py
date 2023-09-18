@@ -19,6 +19,8 @@ TODAY_WEATHER_TEMPLATE: str = (
 
 DAILY_FORECAST_UTC_HOUR: Final[int] = 4
 
+# ? Add Default icon with ? mark
+# ? Or Enum
 ICON_ID_TO_EMOJI: Final[dict] = {
     "01d": "☀",
     "01n": "☀",
