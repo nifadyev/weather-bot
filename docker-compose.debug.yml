@@ -1,0 +1,18 @@
+services:
+  server:
+    container_name: weather-bot-debug
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+    volumes:
+      - ./:/weather-bot/
+    # TODO: move to sh or makefile
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 src/main.py"]
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+      # Debugging port
+      - 5678:5678
