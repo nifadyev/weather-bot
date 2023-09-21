@@ -8,18 +8,18 @@ repos:
     -   id: mixed-line-ending
 # Spell Checker
 -   repo: https://github.com/crate-ci/typos
-    rev: v1.14.9
+    rev: v1.16.12
     hooks:
     -   id: typos
         args: []
 # Git commit linter
 -   repo: https://github.com/jorisroovers/gitlint
-    rev:  v0.18.0
+    rev:  v0.19.1
     hooks:
     -   id: gitlint
 # Detect hardcoded secrets
 -   repo: https://github.com/zricethezav/gitleaks
-    rev: v8.16.3
+    rev: v8.18.0
     hooks:
       - id: gitleaks
 -   repo: local
@@ -28,11 +28,11 @@ repos:
         name: ruff
         # Workaround for VSCode (it does not support venv inside hooks)
         # https://github.com/microsoft/vscode-python/issues/10165
-        entry: python3.11 -m poetry run ruff
+        entry: poetry run ruff
         language: system
         types: [python]
       - id: black
         name: black
-        entry: python3.11 -m poetry run black
+        entry: poetry run black
         language: system
         types: [python]
