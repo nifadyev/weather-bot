@@ -41,7 +41,14 @@ test:  ## Run tests
 
 ## Export prod dependencies
 export-dependencies:
-	python3.11 -m poetry export --no-interaction --without-hashes --without=dev --output requirements.txt
+	poetry export --no-interaction --without-hashes --without=dev --output requirements.txt
+
+## Export prod dependencies
+export-dev-dependencies:
+	poetry export --no-interaction --without-hashes --output requirements-dev.txt
+
+activate-venv:
+	poetry shell
 
 ## Check dependencies for update
 
