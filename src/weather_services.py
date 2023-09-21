@@ -7,7 +7,6 @@ from schemas import OMPWeather
 async def retrieve_weather_info() -> OMPWeather:
     raw_response = await fetch_weather()
 
-    # TODO: Test and setup debugging
     return validate_response(raw_response)
 
 
@@ -20,4 +19,3 @@ async def fetch_weather() -> dict:
 
 def validate_response(raw_response: dict) -> OMPWeather:
     return OMPWeather(**raw_response)
-    # Or return OMPWeather(**raw_response).dict(by_alias=False)
