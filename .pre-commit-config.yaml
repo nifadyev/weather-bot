@@ -36,3 +36,5 @@ repos:
         entry: poetry run black
         language: system
         types: [python]
+ci:
+  skip: [ruff, black]
