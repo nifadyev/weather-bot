@@ -1,4 +1,7 @@
 default_stages: [commit]
+default_language_version:
+    python: python3.11
+
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -22,19 +25,25 @@ repos:
     rev: v8.18.0
     hooks:
       - id: gitleaks
--   repo: local
+-   repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 23.9.1
     hooks:
-      - id: ruff
-        name: ruff
-        # Workaround for VSCode (it does not support venv inside hooks)
-        # https://github.com/microsoft/vscode-python/issues/10165
-        entry: poetry run ruff
-        language: system
-        types: [python]
       - id: black
-        name: black
-        entry: poetry run black
-        language: system
-        types: [python]
+# -   repo: local
+#     hooks:
+#       - id: ruff
+#         name: ruff
+#         # Workaround for VSCode (it does not support venv inside hooks)
+#         # https://github.com/microsoft/vscode-python/issues/10165
+#         entry: poetry run ruff
+#         language: system
+#         types: [python]
+#       - id: black
+#         name: black
+#         entry: poetry run black
+#         language: system
+#         types: [python]
+# ? Need to check if pre-commit hook version and venv package version are equal
+
 ci:
   skip: [ruff, black]
