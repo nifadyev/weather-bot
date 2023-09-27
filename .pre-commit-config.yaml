@@ -33,3 +33,12 @@ repos:
     rev: v0.0.290
     hooks:
       - id: ruff
+# Check if pre-commit hooks version is equal to poetry.lock versions (not vise-versa)
+-   repo: https://github.com/floatingpurr/sync_with_poetry
+    rev: 1.1.0
+    hooks:
+      - id: sync_with_poetry
+        args: ["--db", "sync_with_poetry_config.json"]
+
+ci:
+  skip: [sync_with_poetry]
