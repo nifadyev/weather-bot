@@ -11,7 +11,7 @@ repos:
     -   id: mixed-line-ending
 # Spell Checker
 -   repo: https://github.com/crate-ci/typos
-    rev: v1.16.12
+    rev: v1.16.14
     hooks:
     -   id: typos
         args: []
@@ -29,21 +29,7 @@ repos:
     rev: 23.9.1
     hooks:
       - id: black
-# -   repo: local
-#     hooks:
-#       - id: ruff
-#         name: ruff
-#         # Workaround for VSCode (it does not support venv inside hooks)
-#         # https://github.com/microsoft/vscode-python/issues/10165
-#         entry: poetry run ruff
-#         language: system
-#         types: [python]
-#       - id: black
-#         name: black
-#         entry: poetry run black
-#         language: system
-#         types: [python]
-# ? Need to check if pre-commit hook version and venv package version are equal
-
-ci:
-  skip: [ruff, black]
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.290
+    hooks:
+      - id: ruff
