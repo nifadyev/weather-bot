@@ -15,9 +15,9 @@ pydantic = "^1.10.9"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.262"
-black = "^23.3.0"
-pre-commit = "^3.3.1"
+ruff = "^0.0.291"
+black = "^23.9.1"
+pre-commit = "^3.4.0"
 
 [build-system]
 requires = ["poetry-core"]
