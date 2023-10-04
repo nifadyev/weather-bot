@@ -1,7 +1,11 @@
+from typing import Final
+
 import httpx
 
 from config import OPENWEATHERMAP_REQUEST_TEMPLATE
 from schemas import OMPWeather
+
+DEFAULT_TIMEOUT: Final[float] = 15.0
 
 
 async def retrieve_weather_info() -> OMPWeather:
@@ -11,7 +15,7 @@ async def retrieve_weather_info() -> OMPWeather:
 
 
 async def fetch_weather() -> dict:
-    async with httpx.AsyncClient(http2=True) as client:
+    async with httpx.AsyncClient(http2=True, timeout=DEFAULT_TIMEOUT) as client:
         response = await client.get(OPENWEATHERMAP_REQUEST_TEMPLATE)
 
         return response.json()
