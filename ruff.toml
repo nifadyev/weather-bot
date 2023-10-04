@@ -7,4 +7,6 @@ ignore = [
     "COM",
     # no-blank-line-before-class
     "D211",
+    # multi-line-summary-second-line
+    "D213",
 ]
