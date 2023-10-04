@@ -39,6 +39,10 @@ repos:
     hooks:
       - id: sync_with_poetry
         args: ["--db", "sync_with_poetry_config.json"]
+-   repo: https://github.com/python-poetry/poetry
+    rev: 1.6.1
+    hooks:
+    -   id: poetry-export
 
 ci:
-  skip: [sync_with_poetry]
+  skip: [sync_with_poetry, poetry-export]
