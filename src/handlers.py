@@ -1,17 +1,46 @@
 from datetime import time
+from typing import Coroutine
 
-from telegram import Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.constants import ParseMode
 from telegram.ext import ContextTypes
 
 from callbacks import today_weather
-from constants import DAILY_FORECAST_UTC_HOUR, ICON_ID_TO_EMOJI, NOW_WEATHER_TEMPLATE
+from constants import (
+    DAILY_FORECAST_UTC_HOUR,
+    ENABLE_DAILY_COMMAND,
+    ICON_ID_TO_EMOJI,
+    NOW_COMMAND,
+    NOW_WEATHER_TEMPLATE,
+)
 from weather_services import retrieve_weather_info
+
+MENU_MARKUP = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Current weather", callback_data=NOW_COMMAND),
+            InlineKeyboardButton(text="Enable daily forecast", callback_data=ENABLE_DAILY_COMMAND),
+        ]
+    ],
+)
 
 
 # /start - begins the interaction with the user, like sending an introductory message. This command can also be used to pass additional parameters to the bot (see Deep Linking).
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Welcome to Weather bot!")
+    await context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Welcome to Weather bot!",
+        reply_markup=MENU_MARKUP,
+    )
+
+
+async def menu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Show menu with available commands."""
+    await context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Choose command below",
+        reply_markup=MENU_MARKUP,
+    )
 
 
 # /help - returns a help message, like a short text about what your bot can do and a list of commands.
@@ -54,3 +83,20 @@ async def enable_daily(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.job_queue.run_daily(
         today_weather, time=time(hour=DAILY_FORECAST_UTC_HOUR), chat_id=chat_id
     )
+
+
+async def button_tap(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Coroutine | None:
+    """Parse and process tapping on inline buttons on the menu."""
+    # TODO: Make common decorator with raise for all handlers with Update (separate for context)
+    if not update.callback_query:
+        return
+
+    data = update.callback_query.data
+
+    if data == NOW_COMMAND:
+        await now(update, context)
+    elif data == ENABLE_DAILY_COMMAND:
+        await enable_daily(update, context)
+
+    # Close the query to end the client-side loading animation
+    await update.callback_query.answer()
