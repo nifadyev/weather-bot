@@ -9,4 +9,8 @@ ignore = [
     "D211",
     # multi-line-summary-second-line
     "D213",
+    # Missing author in TODO
+    "TD002",
+    # Missing issue link on the line following this TODO
+    "TD003",
 ]
