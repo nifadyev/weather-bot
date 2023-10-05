@@ -1,5 +1,8 @@
 from typing import Final
 
+NOW_COMMAND: Final[str] = "now"
+ENABLE_DAILY_COMMAND: Final[str] = "enable_daily"
+
 NOW_WEATHER_TEMPLATE: str = (
     "{icon} *{description}* \n"
     "*Feels like*: {current_feels_like} ℃ \n"
