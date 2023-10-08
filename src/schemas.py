@@ -61,4 +61,4 @@ class Alert(BaseModel):
 class OMPWeather(BaseModel):
     current: CurrentWeather
     daily: list[DailyWeather]
-    alerts: list[Alert]
+    alerts: list[Alert] = []
