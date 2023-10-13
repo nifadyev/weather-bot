@@ -1,6 +1,20 @@
 from datetime import datetime
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel, Field, confloat, validator
+from telegram.helpers import escape_markdown
+
+
+def escape_special_symbols(float_repr_temperature: str) -> str:
+    """Drop floating part from temperature repr and escape reserved Telegram symbols.
+
+    For example, symbol `-` should be escaped.
+    """
+    if len(float_repr_temperature) == 1:
+        int_repr_temperature = float_repr_temperature
+    else:
+        int_repr_temperature = float_repr_temperature[:-3]
+
+    return escape_markdown(text=int_repr_temperature, version=2)
 
 
 class WeatherSummary(BaseModel):
@@ -15,9 +29,13 @@ class WeatherSummary(BaseModel):
 
 
 class DailyTemperatures(BaseModel):
-    morning: int = Field(int, alias="morn")
-    day: int
-    night: int
+    morning: str = Field(default=..., alias="morn")
+    day: str = Field(default=...)
+    night: str = Field(default=...)
+
+    _escape_special_symbols_morning = validator("morning", allow_reuse=True)(escape_special_symbols)
+    _escape_special_symbols_day = validator("day", allow_reuse=True)(escape_special_symbols)
+    _escape_special_symbols_night = validator("night", allow_reuse=True)(escape_special_symbols)
 
 
 class BaseWeather(BaseModel):
@@ -37,8 +55,15 @@ class BaseWeather(BaseModel):
 
 
 class CurrentWeather(BaseWeather):
-    feels_like: int
-    actual_temperature: int = Field(int, alias="temp")
+    feels_like: str = Field(default=...)
+    actual_temperature: str = Field(default=..., alias="temp")
+
+    _escape_special_symbols_feels_like = validator("feels_like", allow_reuse=True)(
+        escape_special_symbols
+    )
+    _escape_special_symbols_actual_temperature = validator("actual_temperature", allow_reuse=True)(
+        escape_special_symbols
+    )
 
 
 class DailyWeather(BaseWeather):
