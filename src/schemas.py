@@ -12,7 +12,7 @@ def escape_special_symbols(float_repr_temperature: str) -> str:
     if len(float_repr_temperature) == 1:
         int_repr_temperature = float_repr_temperature
     else:
-        int_repr_temperature = float_repr_temperature[:-3]
+        int_repr_temperature = float_repr_temperature[:-2]
 
     return escape_markdown(text=int_repr_temperature, version=2)
 
