@@ -14,3 +14,4 @@ services:
     command: python src/main.py
     ports:
       - "$CONTAINER_PORT:HOST_PORT"
+    restart: always
