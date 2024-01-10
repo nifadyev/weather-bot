@@ -1,6 +1,7 @@
 services:
   server:
     container_name: weather-bot
+    env_file: .env
     build:
       context: ./
       dockerfile: Dockerfile
@@ -11,6 +12,5 @@ services:
     volumes:
       - ./:/weather-bot/
     command: python src/main.py
-    env_file: .env
     ports:
-      - 8000:8000
+      - "$CONTAINER_PORT:HOST_PORT"
