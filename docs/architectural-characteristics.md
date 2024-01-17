@@ -1,5 +1,7 @@
 # Architectural characteristics
 
+Most characteristics are aimed to ease project's development and maintenance. It doesn't clear now if project will be used by anyone or not. That's why priority is given to technical characteristics.
+
 - [Architectural characteristics](#architectural-characteristics)
   - [Modifiability](#modifiability)
   - [Maintainability](#maintainability)
