@@ -1,30 +1,32 @@
-# Содержание
+# Technical requirements
 
-- [Содержание](#содержание)
-- [Цель проекта (основная проблема, которую решает проект)](#цель-проекта-основная-проблема-которую-решает-проект)
-- [Требования](#требования)
+- [Technical requirements](#technical-requirements)
+  - [Aim and the main problem to solve](#aim-and-the-main-problem-to-solve)
+  - [Requirements](#requirements)
 
-# Цель проекта (основная проблема, которую решает проект)
+## Aim and the main problem to solve
 
-Показатели температуры в большинстве погодных приложений и сервисов не отражают реальной погоды. Температура "по ощущениям" гораздо информативнее, но имеется не в каждом сервисе.
-Вторая проблема - необходимость вручную проверять погоду, например с утра перед работой
-Цель - создать сервис в удобном популярном мессенджере (Telegram), который будет присылать по заданным пользователям периодам и вручную полезную информацию о погоде.
+Most weather services and apps show temperature as bare numbers. But it is not what most of us want to know. Obvious solution is "Feels like" temperature. It takes humidity, wind and many other measurements into an account and that is why it is much more informative. But unfortunately such temperature is not present in every service.
 
-# Требования
+Another problem is necessity to manually check the weather, for example every morning before going to work.
+
+The aim of this project is to provide actual weather information, send it to users using manual trigger or scheduled tasks, and use popular messenger such as Telegram instead of creating one more extra app or web service.
+
+## Requirements
 
 US - User Story
 
-- [US-1] Система должна отображать сообщение с краткой информацией до запуска бота. Сообщение должно содержать текущие возможности бота и SVG изображение
-- [US-2] Пользователь может запустить бота. Стартовое сообщение должно содержать описание возможностей и кнопки с основными командами
-- [US-3] Пользователь должен иметь возможность модифицировать настройки. Настройки включают в себя локацию, периодические сообщения, язык
-  - [US-4] Пользователь может задать локацию для получения погоды на основе данных из Telegram
-  - [US-5] Пользователь может изменить язык бота. По умолчанию выбран язык Telegram
-  - [US-6] Пользователь может изменить периодичность отправки сообщений
-- [US-7] Система должна сохранять пользовательские настройки между вынужденными и непредвиденными перезапусками в БД
-- [US-8] Система должна содержать нативное меню Telegram ботов со списком доступных на данный момент команд и их описанием
-- [US-9] Система должна реализовать обязательную команду для вывода справочной информации
-- [US-10] Система должна реализовать команду для получения текущей погоды с учетом заданных настроек пользователя
-- [US-11] Система должна реализовать команду для получения погоды на сегодня
-- [US-12] Система должна реализовать команду для получения погоды на завтра
-- [US-13] Система должна реализовать команду для получения погоды на 7 дней
-- [US-14] Система должна обрабатывать недоступность OpenWeatherMap API
+- [US-1] System should welcome user with message which contains short description of bot commands and some image. It should be displayed before starting any interaction with bot.
+- [US-2] User is able to start interaction with bot. Starting message should contain description of bot commands and keyboard buttons with these commands.
+- [US-3] User should be able to change settings. Location, schedule of sending periodic messages and language should be available for modification.
+  - [US-4] User is able to change location (both persistently and temporary? Sometimes it's necessary to check weather in other locations only several times).
+  - [US-5] User should be able to change language. Telegram's language is set by default.
+  - [US-6] User should be able to change schedule of sending periodic messages.
+- [US-7] System should store user data (only settings for now) in persistent storage. It is necessary to avoid data loss between expected and unexpected system restarts.
+- [US-8] System should implement native Telegram bot menu with list of available commands and their short description.
+- [US-9] System should provide required command for showing help information.
+- [US-10] System should provide command for retrieving current weather conditions based on user settings.
+- [US-11] System should provide command for retrieving today's weather conditions.
+- [US-12] System should provide command for retrieving tomorrow's weather conditions.
+- [US-13] System should provide command for week's weather conditions.
+- [US-14] System should handle OpenWeatherMap API unavailability.
