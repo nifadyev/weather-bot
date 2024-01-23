@@ -8,6 +8,7 @@ Most characteristics are aimed to ease project's development and maintenance. It
   - [Testability](#testability)
   - [Simplicity](#simplicity)
   - [Usability](#usability)
+  - [Availability](#availability)
 
 ## Modifiability
 
@@ -43,5 +44,8 @@ System's clarity for everyone who interact with it. Important for most Open Sour
 Ease of use and effectiveness of interaction with system.
 
 - Total time from executing command (from menu, pushing button) to returning message should be less than N seconds (probably 3 seconds)
-- System should always return message. Even in case of internal error
 - System should respect user settings
+
+## Availability
+
+- System should always return message. Even in case of internal error
