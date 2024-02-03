@@ -20,3 +20,9 @@ Start with basic unit tests and then try to adopt `Hypothesis` property-based te
 Tests with imitation of actual behavior. They will mostly cover interaction with OWM API and Telegram.
 
 Will not be implemented until MVP.
+
+## Type Checking
+
+The project should be statically typed from the beginning. Development team has experience with typing existing codebase and it always ended on incomplete state. System is working so why bothering with types?!
+
+That is why system will be strictly typed by default.
