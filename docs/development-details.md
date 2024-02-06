@@ -1,5 +1,24 @@
 # Development details
 
+## Project structure
+
+Use [this new](https://github.com/sourcery-ai/python-best-practices-cookiecutter/tree/main/%7B%7Bcookiecutter.repo_name%7D%7D) and [this old](https://github.com/audreyfeldroy/cookiecutter-pypackage/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D) `cookiecutter` templates for reference
+
+Based on ADRs, the project will be followed like this:
+
+- .github/ - stores PR, issues templates, Github Actions workflows
+- docs/ - the only place with documentation. Follows Docs as a Code approach
+- src/
+  - weather_provider/ - OpenWeatherMap API related logic, including data serialization and validation and requests to API
+  - templates/ - message templates
+  - telegram/ - interaction with Telegram API
+  - geo/ - logic for dealing with user location
+  - constants.py
+  - config.py or settings.py - project settings, for example loading `.env` file (maybe move to main.py)
+  - main.py or app.py - enter point to the project, configure and run server
+- tests/
+- other service files and configs like `docker-compose.yml`, `Makefile`, `.pre-commit-config.yaml`, etc.
+
 ## Testing
 
 [How to write tests for Telegram bot - ptb](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Writing-Tests)
