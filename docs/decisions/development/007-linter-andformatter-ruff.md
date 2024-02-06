@@ -29,7 +29,7 @@ Development team is familiar with all considered options and it does not affect 
 * Good, because it is extremely fast
 * Good, because it is also auto formatter and could replace `black`
 * Good, because it could auto delete dead code (replaces `eradicate` and [vulture](https://github.com/jendrikseipp/vulture))
-* Good, because it replaces `pyupgrade`, `isort` and a lot of useful packages``
+* Good, because it replaces `pyupgrade`, `isort` and a lot of useful packages
 * Good, because it has `pre-commit` hook
 * Neutral, because it tries to be all-in-one tool and it has too much rules
 * Bad, because it is in beta and updated very often
