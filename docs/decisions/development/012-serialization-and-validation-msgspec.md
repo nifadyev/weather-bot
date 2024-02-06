@@ -20,7 +20,7 @@ This tool should support dataclasses (or schema) based validation, because it's 
 ## Decision Outcome
 
 **Chosen option**: "msgspec", because
-it is dependencies-free, integrates well with type checkers and IDEs and it is backed by Litestart (modern async framework)
+it is dependencies-free, integrates well with type checkers and IDEs and it is backed by Litestar (modern async framework)
 
 ## Pros and Cons of the Options
 
@@ -46,7 +46,7 @@ Rust based, [documentation](https://docs.pydantic.dev/latest/)
 * Neutral, because it also support MessagePack, YAML, TOML. OWM API only supports JSON, so it is not important
 * Bad, because it is quite new (created at 2021) and does not have any major release
 
-### catts
+### cattrs
 
 Library for structuring and unstructuring data
 [Comparison with Pydantic](https://threeofwands.com/why-i-use-attrs-instead-of-pydantic/)
