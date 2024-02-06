@@ -35,7 +35,7 @@ it fulfill all requirements for HTTP client.
 * Good, because it has zero dependencies
 * Neutral, because development team is familiar with it
 * Bad, because it does not support async requests
-* Bad, because it does not HTTP/2
+* Bad, because it does not support HTTP/2
 
 ## More Information
 
