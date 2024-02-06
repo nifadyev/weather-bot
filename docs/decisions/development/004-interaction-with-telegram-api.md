@@ -1,5 +1,5 @@
 ---
-status: proposed
+status: accepted
 ---
 
 # ADR-004: Protocol for interacting with Telegram API - MTProto
@@ -53,7 +53,7 @@ MTProto is Telegram’s own protocol to communicate with their API when you conn
 
 ### Links
 
-* [MTProto Telephon overview](https://docs.telethon.dev/en/stable/concepts/botapi-vs-mtproto.html)
+* [MTProto Telethon overview](https://docs.telethon.dev/en/stable/concepts/botapi-vs-mtproto.html)
 * [MTProto compared with HTTP Bot API](https://github.com/LonamiWebs/Telethon/wiki/MTProto-vs-HTTP-Bot-API)
 * [Webhook python-telegram-bot example](https://docs.python-telegram-bot.org/en/stable/examples.customwebhookbot.html)
 * [Webhooks - python-telegram-bot Wiki](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Webhooks)
