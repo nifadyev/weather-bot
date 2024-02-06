@@ -48,8 +48,6 @@ such tool should not be "the tool to rule them all", it will just produce more e
 
 [awesome-pdm](https://github.com/pdm-project/awesome-pdm)
 
-SUpport VSCode?
-
 * Good, because it uses modern `pyproject.toml` and `*.lock` way of storing dependencies
 * Good, because it has good documentation
 * Neutral, because it follows [PEP 621](https://www.python.org/dev/peps/pep-0621) toml file structure
