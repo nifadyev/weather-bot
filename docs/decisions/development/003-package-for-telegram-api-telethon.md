@@ -1,8 +1,8 @@
 ---
-status: proposed
+status: accepted
 ---
 
-# ADR-003: Choose package for Telegram API interaction - Telephon
+# ADR-003: Choose package for Telegram API interaction - Telethon
 
 ## Context and Problem Statement
 
@@ -12,14 +12,14 @@ Since Telegram is chosen as "frontend" of the system, it is necessary to pick an
 
 * [python-telegram-bot](https://docs.python-telegram-bot.org/en)
 * [aiogram](https://docs.aiogram.dev/en/latest/index.html)
-* [Telephon](https://github.com/LonamiWebs/Telethon/tree/v1)
+* [Telethon](https://github.com/LonamiWebs/Telethon/tree/v1)
 * [pyrogram](https://github.com/pyrogram/pyrogram)
 * pyTelegramBotAPI
 * direct API calls
 
 ## Decision Outcome
 
-**Chosen option**: "Telephon", because it's based on MTProto, it will not require overhaul during webhook installation and it's well documented and up-to-date
+**Chosen option**: "Telethon", because it's based on `MTProto`, it will not require overhaul during webhook installation and it's well documented and up-to-date.
 
 ### Consequences
 
@@ -31,7 +31,7 @@ Since Telegram is chosen as "frontend" of the system, it is necessary to pick an
 ### python-telegram-bot
 
 * Good, because it is familiar for development team
-* Good, because it only 1 external dependency - `httpx`. Other dependencies for HTTP2, webhooks and scheduling are optional
+* Good, because it has only 1 external dependency - `httpx`. Other dependencies for HTTP2, webhooks and scheduling are optional
 * Good, because it has well written documentation with a lot of examples and solutions (for example, bot testing)
 * Neutral, because it requires [tornado](https://www.tornadoweb.org/en/stable/) Web Framework for webhook support (see ADR-004 for details)
 
@@ -43,7 +43,7 @@ Since Telegram is chosen as "frontend" of the system, it is necessary to pick an
 * Neutral, because it is mostly the same as familiar `python-telegram-bot`
 * Bad, because it has toxic community
 
-### Telephon
+### Telethon
 
 * Good, because it based on MTProto (see ADR-004 for details)
 * Good, because it has well-written documentation
