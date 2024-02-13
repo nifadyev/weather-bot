@@ -16,3 +16,8 @@ __pycache__/
 
 # Virtual environments
 .venv
+
+.python-version
+
+# PDM specific files
+.pdm-python
