@@ -1,0 +1,14 @@
+[project]
+name = "weather-bot"
+version = "2.0.0-alpha"
+description = "Telegram Bot with weather forecasts from OpenWeatherMap API"
+authors = [
+    {name = "Vadim Nifadev", email = "makemenu_flash@simplelogin.com"},
+]
+dependencies = []
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm]
+distribution = false
