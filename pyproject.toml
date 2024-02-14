@@ -24,3 +24,7 @@ dev = [
 [tool.sync-pre-commit-lock]
 # Run `pre-commit install` automatically if applicable
 automaticall-install-hooks = false
+
+[tool.typos]
+type.svg.extend-glob = ["*.svg"]
+type.svg.check-file = false
