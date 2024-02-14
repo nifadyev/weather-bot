@@ -17,4 +17,5 @@ install-dev: install
 	pdm install --group dev
 
 init-pre-commit:
-	pdm run pre-commit install --install-hooks
+	# --hook-type commit-msg is required for gitlint hook to work. commit-msg hook is not installed by default
+	pdm run pre-commit install --install-hooks --hook-type commit-msg
