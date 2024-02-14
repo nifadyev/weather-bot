@@ -8,9 +8,13 @@ install:
 
 	pdm use -f .venv
 	pdm install --production
+	make init-pre-commit
 
 	cp .env.example .env
 	echo "Please fill in .env file"
 
 install-dev: install
 	pdm install --group dev
+
+init-pre-commit:
+	pdm run pre-commit install --install-hooks
