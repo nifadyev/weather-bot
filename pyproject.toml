@@ -12,8 +12,17 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+# Commit separately
+plugins = [
+    "sync-pre-commit-lock"
+]
 
 [tool.pdm.dev-dependencies]
 dev = [
     "pre-commit>=3.6.1",
 ]
+
+[tool.sync-pre-commit-lock]
+# Run `pre-commit install` automatically if applicable
+automaticall-install-hooks = false
+# dependency-mapping = {"package-name"= {"repo"= "https://github.com/example/package-name", "rev"= "v${rev}"}}
