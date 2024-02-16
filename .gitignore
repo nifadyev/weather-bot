@@ -21,3 +21,6 @@ __pycache__/
 
 # PDM specific files
 .pdm-python
+
+# Telethon session files
+*.session
