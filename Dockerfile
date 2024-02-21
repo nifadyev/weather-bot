@@ -7,17 +7,26 @@ FROM python:${PYTHON_MAJOR_VERSION}-slim AS builder
 
 RUN addgroup --system bot-admin && adduser --system --group bot-admin
 
-COPY pyproject.toml pdm.lock /weather-bot/
+# Allow ubuntu to cache package downloads
+RUN rm -f /etc/apt/apt.conf.d/docker-clean; \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' \
+    > /etc/apt/apt.conf.d/keep-cache
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 - \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
-    curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 -
-RUN cd /weather-bot && \
-    export PATH="$PATH:/root/.local/bin" && \
-    python -m venv /opt/venv && \
-    pdm use /opt/venv && \
-    pdm install --production --frozen-lockfile --no-self && \
-    chown --recursive bot-admin:bot-admin /opt/venv
+WORKDIR /weather-bot
+RUN --mount=type=cache,target=/root/.cache/pdm \
+    --mount=type=bind,source=pyproject.toml,target=/weather-bot/pyproject.toml \
+    --mount=type=bind,source=pdm.lock,target=/weather-bot/pdm.lock \
+    export PATH="$PATH:/root/.local/bin" \
+    && python -m venv /opt/venv \
+    && pdm use /opt/venv \
+    && pdm install --production --frozen-lockfile --no-self \
+    && chown --recursive bot-admin:bot-admin /opt/venv
 
 # Run stage
 FROM python:${PYTHON_MAJOR_VERSION}-slim as runner
