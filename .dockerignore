@@ -1,0 +1,10 @@
+*.md
+*.svg
+compose.yaml
+.gitignore
+
+.git
+.gitignore
+.vscode
+Dockerfile
+.venv
