@@ -19,3 +19,9 @@ install-dev: install
 init-pre-commit:
 	# --hook-type commit-msg is required for gitlint hook to work. commit-msg hook is not installed by default
 	pdm run pre-commit install --install-hooks --hook-type commit-msg --hook-type pre-push
+
+build:
+	docker compose build
+
+run-docker:
+	docker compose up
