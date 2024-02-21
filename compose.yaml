@@ -3,6 +3,7 @@ services:
     image: "weather-bot:${VERSION}"
     container_name: weather-bot
     env_file: .env
+    user: ${UID}:${GID}
     build:
       context: ./
       args:
