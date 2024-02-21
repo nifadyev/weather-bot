@@ -1,0 +1,13 @@
+services:
+  server:
+    image: "weather-bot:${VERSION}"
+    container_name: weather-bot
+    env_file: .env
+    build:
+      context: ./
+      args:
+        - PYTHON_MAJOR_VERSION=${PYTHON_MAJOR_VERSION}
+    volumes:
+      - ./:/weather-bot/
+    command: python /weather-bot/src/main.py
+    restart: always
