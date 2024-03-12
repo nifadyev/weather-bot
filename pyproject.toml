@@ -35,3 +35,6 @@ automatically-install-hooks = false
 [tool.typos]
 type.svg.extend-glob = ["*.svg"]
 type.svg.check-file = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
