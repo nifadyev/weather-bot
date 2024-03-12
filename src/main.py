@@ -1,9 +1,11 @@
 import os
-from typing import Awaitable, Final, NoReturn
+from typing import Final, NoReturn
 from telethon import TelegramClient
 from telethon.events import NewMessage, StopPropagation
 from dotenv import load_dotenv
-from telethon.tl.patched import Message
+from telethon import events
+
+from constants.messages import START_MESSAGE
 
 load_dotenv()
 
@@ -14,17 +16,15 @@ bot: TelegramClient = TelegramClient(session="bot", api_id=API_ID, api_hash=API_
     bot_token=BOT_TOKEN
 )
 
-
-@bot.on(event=NewMessage())
-async def echo(event: NewMessage.Event) -> Awaitable[Message]:
-    await event.respond(event.text)
-
-
 @bot.on(event=NewMessage(pattern="/example"))
 async def example(event: NewMessage.Event) -> NoReturn:
     await event.respond("Hi!")
     raise StopPropagation
 
+@bot.on(event=NewMessage(pattern="/start"))
+async def start(event: NewMessage.Event) -> NoReturn:
+    await event.respond(START_MESSAGE)
+    raise StopPropagation
 
 def main() -> None:
     bot.run_until_disconnected()
