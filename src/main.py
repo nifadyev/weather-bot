@@ -1,8 +1,9 @@
 import os
-from typing import Final, NoReturn
+from typing import Awaitable, Final, NoReturn
 from telethon import TelegramClient
 from telethon.events import NewMessage, StopPropagation
 from dotenv import load_dotenv
+from telethon.tl.patched import Message
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ bot: TelegramClient = TelegramClient(session="bot", api_id=API_ID, api_hash=API_
 
 
 @bot.on(event=NewMessage())
-async def echo(event: NewMessage.Event):
+async def echo(event: NewMessage.Event) -> Awaitable[Message]:
     await event.respond(event.text)
 
 
