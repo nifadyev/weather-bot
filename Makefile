@@ -25,3 +25,6 @@ build:
 
 run-docker:
 	docker compose up
+
+test:
+	python -m pytest
