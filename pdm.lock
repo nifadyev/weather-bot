@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:ed45eeea79fe69ee6e148b1158d2de5f8d3229ad3ecf9e79ef9496ccd4518246"
+content_hash = "sha256:81ac24f492f2642af2af2e909dd637f26da035be671fc56b83b966272fbdcdea"
 
 [[package]]
 name = "cfgv"
@@ -102,6 +102,36 @@ files = [
 ]
 
 [[package]]
+name = "mashumaro"
+version = "3.12"
+requires_python = ">=3.8"
+summary = "Fast and well tested serialization library"
+groups = ["default"]
+dependencies = [
+    "typing-extensions>=4.1.0",
+]
+files = [
+    {file = "mashumaro-3.12-py3-none-any.whl", hash = "sha256:bc4ab7ecaca106fcde706d77cef22816149285a10727b88141599855d4603e2f"},
+    {file = "mashumaro-3.12.tar.gz", hash = "sha256:bb4ff10aee689edff24f6ff369843e1a826193d396b449b86ef58489bfe40c83"},
+]
+
+[[package]]
+name = "mashumaro"
+version = "3.12"
+extras = ["orjson"]
+requires_python = ">=3.8"
+summary = "Fast and well tested serialization library"
+groups = ["default"]
+dependencies = [
+    "mashumaro==3.12",
+    "orjson",
+]
+files = [
+    {file = "mashumaro-3.12-py3-none-any.whl", hash = "sha256:bc4ab7ecaca106fcde706d77cef22816149285a10727b88141599855d4603e2f"},
+    {file = "mashumaro-3.12.tar.gz", hash = "sha256:bb4ff10aee689edff24f6ff369843e1a826193d396b449b86ef58489bfe40c83"},
+]
+
+[[package]]
 name = "nodeenv"
 version = "1.8.0"
 requires_python = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*"
@@ -113,6 +143,26 @@ dependencies = [
 files = [
     {file = "nodeenv-1.8.0-py2.py3-none-any.whl", hash = "sha256:df865724bb3c3adc86b3876fa209771517b0cfe596beff01a92700e0e8be4cec"},
     {file = "nodeenv-1.8.0.tar.gz", hash = "sha256:d51e0c37e64fbf47d017feac3145cdbb58836d7eee8c6f6d3b6880c5456227d2"},
+]
+
+[[package]]
+name = "orjson"
+version = "3.9.15"
+requires_python = ">=3.8"
+summary = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
+groups = ["default"]
+files = [
+    {file = "orjson-3.9.15-cp311-cp311-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl", hash = "sha256:c8e8fe01e435005d4421f183038fc70ca85d2c1e490f51fb972db92af6e047c2"},
+    {file = "orjson-3.9.15-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:87f1097acb569dde17f246faa268759a71a2cb8c96dd392cd25c668b104cad2f"},
+    {file = "orjson-3.9.15-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ff0f9913d82e1d1fadbd976424c316fbc4d9c525c81d047bbdd16bd27dd98cfc"},
+    {file = "orjson-3.9.15-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:8055ec598605b0077e29652ccfe9372247474375e0e3f5775c91d9434e12d6b1"},
+    {file = "orjson-3.9.15-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:d6768a327ea1ba44c9114dba5fdda4a214bdb70129065cd0807eb5f010bfcbb5"},
+    {file = "orjson-3.9.15-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:12365576039b1a5a47df01aadb353b68223da413e2e7f98c02403061aad34bde"},
+    {file = "orjson-3.9.15-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:71c6b009d431b3839d7c14c3af86788b3cfac41e969e3e1c22f8a6ea13139404"},
+    {file = "orjson-3.9.15-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:e18668f1bd39e69b7fed19fa7cd1cd110a121ec25439328b5c89934e6d30d357"},
+    {file = "orjson-3.9.15-cp311-none-win32.whl", hash = "sha256:62482873e0289cf7313461009bf62ac8b2e54bc6f00c6fabcde785709231a5d7"},
+    {file = "orjson-3.9.15-cp311-none-win_amd64.whl", hash = "sha256:b3d336ed75d17c7b1af233a6561cf421dee41d9204aa3cfcc6c9c65cd5bb69a8"},
+    {file = "orjson-3.9.15.tar.gz", hash = "sha256:95cae920959d772f30ab36d3b25f83bb0f3be671e986c72ce22f8fa700dae061"},
 ]
 
 [[package]]
@@ -308,6 +358,17 @@ dependencies = [
 ]
 files = [
     {file = "Telethon-1.34.0.tar.gz", hash = "sha256:55290809a30081fa0bb5052abb7547cbb25d7fbca94f32f13c147504d521804f"},
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.10.0"
+requires_python = ">=3.8"
+summary = "Backported and Experimental Type Hints for Python 3.8+"
+groups = ["default"]
+files = [
+    {file = "typing_extensions-4.10.0-py3-none-any.whl", hash = "sha256:69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475"},
+    {file = "typing_extensions-4.10.0.tar.gz", hash = "sha256:b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb"},
 ]
 
 [[package]]
