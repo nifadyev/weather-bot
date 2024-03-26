@@ -1,5 +1,5 @@
 ---
-status: accepted
+status: superseded by [ADR-014](014-change-serialization-package-to-mashumaro.md)
 ---
 
 # ADR-012: Choose package for serialization and validation - msgspec
