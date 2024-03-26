@@ -51,6 +51,7 @@ Since Telegram is chosen as "frontend" of the system, it is necessary to pick an
 * Neutral, because it supports [scheduled functions](https://github.com/LonamiWebs/Telethon/wiki/Scheduling-Functions) via `asyncio` or `apscheduler`
 * Neutral, because it could use [cryptg](https://docs.telethon.dev/en/stable/basic/installation.html#optional-dependencies) to speed up encryption/decryption on C instead of Python
 * Neutral, because it possibly supports message [translation](https://tl.telethon.dev/methods/messages/translate_text.html)
+* Neutral, because it does not have useful helper to escape reserved Markdown symbols (like `escape_markdown` in `python-telegram-bot`)
 * Bad, because it will require more time to develop using new techniques and `asyncio` studying
 
 ### pyrogram
