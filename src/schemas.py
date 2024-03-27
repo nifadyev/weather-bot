@@ -12,13 +12,13 @@ def deserialize_temperature(raw_temperature: float) -> str:
     return escape_reserved_symbols(temperature_repr)
 
 
-@dataclass
+@dataclass(frozen=True)
 class WeatherSummary(DataClassORJSONMixin):
     description: str
     icon_id: str = field(metadata=field_options(alias="icon"))
 
 
-@dataclass
+@dataclass(frozen=True)
 class DailyTemperatures(DataClassORJSONMixin):
     morning: str = field(
         metadata=field_options(alias="morn", deserialize=deserialize_temperature)
@@ -27,13 +27,13 @@ class DailyTemperatures(DataClassORJSONMixin):
     night: str = field(metadata=field_options(deserialize=deserialize_temperature))
 
 
-@dataclass
+@dataclass(frozen=True)
 class BaseWeather(DataClassORJSONMixin):
     uv_index: int = field(metadata=field_options(alias="uvi", deserialize=int))
     weather: list[WeatherSummary]
 
 
-@dataclass
+@dataclass(frozen=True)
 class CurrentWeather(BaseWeather, DataClassORJSONMixin):
     feels_like: str = field(metadata=field_options(deserialize=deserialize_temperature))
     actual_temperature: str = field(
@@ -41,14 +41,14 @@ class CurrentWeather(BaseWeather, DataClassORJSONMixin):
     )
 
 
-@dataclass
+@dataclass(frozen=True)
 class DailyWeather(BaseWeather, DataClassORJSONMixin):
     feels_like: DailyTemperatures
     temp: DailyTemperatures
     summary: str
 
 
-@dataclass
+@dataclass(frozen=True)
 class Alert(DataClassORJSONMixin):
     event: str
     description: str
@@ -56,7 +56,7 @@ class Alert(DataClassORJSONMixin):
     end_time: int = field(metadata=field_options(alias="end"))
 
 
-@dataclass
+@dataclass(frozen=True)
 class OWMWeather(DataClassORJSONMixin):
     current: CurrentWeather
     daily: list[DailyWeather]
