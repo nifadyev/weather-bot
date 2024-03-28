@@ -2,7 +2,7 @@ from mashumaro.mixins.orjson import DataClassORJSONMixin
 from mashumaro import field_options
 from dataclasses import field, dataclass
 
-from src.telegram.helpers import escape_reserved_symbols
+from telegram.helpers import escape_reserved_symbols
 
 
 def deserialize_temperature(raw_temperature: float) -> str:
