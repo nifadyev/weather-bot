@@ -3,7 +3,7 @@ from src.constants.messages import START_MESSAGE
 from telethon.events import StopPropagation
 from src.main import start
 
-from tests.fixtures import EventFactory, MessageFactory
+from tests.conftest import EventFactory, MessageFactory
 
 
 # ! WIP - not working because EventFactory has no chat attr
