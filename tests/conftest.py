@@ -23,9 +23,9 @@ class EventFactory(factory.Factory):
 
     message = factory.SubFactory(MessageFactory)
 
-
-@pytest.fixture(scope="module")
+@pytest.fixture
 def set_owm_api_env_variables():
+    """Do not add scope to this fixture, it will break unit tests at test_owm_api.py."""
     os.environ["OPENWEATHERMAP_API_KEY"] = "fake_app_id"
     os.environ["LATITUDE"] = "12.3456789"
     os.environ["LONGITUDE"] = "98.7654321"

@@ -1,5 +1,10 @@
 from typing import Final
 
+OPENWEATHERMAP_REQUEST: Final[str] = (
+    "https://api.openweathermap.org/data/3.0/onecall?"
+    "lat=12.3456789&lon=98.7654321&units=metric&exclude=minutely,hourly&appid=fake_app_id"
+)
+
 
 OWM_RESPONSE_FRAGMENT: Final[str] = """
 {
