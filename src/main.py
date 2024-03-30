@@ -1,14 +1,15 @@
 import os
-from typing import Final, NoReturn
-from telethon import Button, TelegramClient
-from telethon.events import NewMessage, StopPropagation
+from typing import Final
+from telethon import TelegramClient
+from telethon.events import NewMessage
 from dotenv import load_dotenv
 from telethon import events
 
-from constants.messages import START_MESSAGE
+from telegram.commands import current_forecast, now_is_pressed, start
 
 load_dotenv()
 
+# TODO: Move to some init function and call it in main
 API_ID: Final[int] = int(os.environ["TELEGRAM_API_ID"])
 API_HASH: Final[str] = os.environ["TELEGRAM_API_HASH"]
 BOT_TOKEN: Final[str] = os.environ["TELEGRAM_BOT_TOKEN"]
@@ -17,44 +18,12 @@ bot: TelegramClient = TelegramClient(
 ).start(bot_token=BOT_TOKEN)
 
 
-@bot.on(event=NewMessage(pattern="/example"))
-async def example(event: NewMessage.Event) -> NoReturn:
-    await event.respond("Hi!")
-
-    raise StopPropagation
-
-
-@bot.on(event=NewMessage(pattern="/start"))
-async def start(event: NewMessage.Event) -> NoReturn:
-    if not event.chat:
-        raise
-
-    await bot.send_message(
-        entity=event.chat,
-        message=START_MESSAGE,
-        buttons=[
-            [
-                Button.inline(text="Now"),
-                Button.inline(text="Today"),
-                Button.inline(text="Tomorrow"),
-            ],
-            [
-                Button.inline(text="Week"),
-                Button.inline(text="Schedule forecast"),
-                Button.inline(text="Settings"),
-            ],
-        ],
-    )
-
-    raise StopPropagation
-
-
-@bot.on(events.CallbackQuery(pattern="Now"))
-async def now_is_pressed(event) -> NoReturn:
-    await example(event)
-
 
 def main() -> None:
+    bot.add_event_handler(callback=start, event=NewMessage(pattern="/start"))
+    bot.add_event_handler(callback=current_forecast, event=NewMessage(pattern="/now"))
+    bot.add_event_handler(callback=now_is_pressed, event=events.CallbackQuery(pattern="Now"))
+
     bot.run_until_disconnected()
 
 
