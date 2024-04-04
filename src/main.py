@@ -1,5 +1,4 @@
 import os
-from typing import Final
 from telethon import TelegramClient
 from telethon.events import NewMessage
 from dotenv import load_dotenv
@@ -9,20 +8,30 @@ from telegram.commands import current_forecast, now_is_pressed, start
 
 load_dotenv()
 
-# TODO: Move to some init function and call it in main
-API_ID: Final[int] = int(os.environ["TELEGRAM_API_ID"])
-API_HASH: Final[str] = os.environ["TELEGRAM_API_HASH"]
-BOT_TOKEN: Final[str] = os.environ["TELEGRAM_BOT_TOKEN"]
-bot: TelegramClient = TelegramClient(
-    session="bot", api_id=API_ID, api_hash=API_HASH
-).start(bot_token=BOT_TOKEN)
 
+def _init_client() -> TelegramClient:
+    return TelegramClient(
+        session="bot",
+        api_id=int(os.environ["TELEGRAM_API_ID"]),
+        api_hash=os.environ["TELEGRAM_API_HASH"],
+    ).start(bot_token=os.environ["TELEGRAM_BOT_TOKEN"])
+
+
+def _add_event_handlers(client: TelegramClient) -> None:
+    client.add_event_handler(callback=start, event=NewMessage(pattern="/start"))
+    client.add_event_handler(
+        callback=current_forecast, event=NewMessage(pattern="/now")
+    )
+    client.add_event_handler(
+        callback=now_is_pressed, event=events.CallbackQuery(pattern="Now")
+    )
+    # bot.build_reply_markup - for building keyboard with buttons
 
 
 def main() -> None:
-    bot.add_event_handler(callback=start, event=NewMessage(pattern="/start"))
-    bot.add_event_handler(callback=current_forecast, event=NewMessage(pattern="/now"))
-    bot.add_event_handler(callback=now_is_pressed, event=events.CallbackQuery(pattern="Now"))
+    bot = _init_client()
+
+    _add_event_handlers(bot)
 
     bot.run_until_disconnected()
 
