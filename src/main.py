@@ -23,7 +23,7 @@ def _add_event_handlers(client: TelegramClient) -> None:
         callback=current_forecast, event=NewMessage(pattern="/now")
     )
     client.add_event_handler(
-        callback=now_is_pressed, event=events.CallbackQuery(pattern="Now")
+        callback=now_is_pressed, event=NewMessage(pattern="Now")
     )
     # bot.build_reply_markup - for building keyboard with buttons
 

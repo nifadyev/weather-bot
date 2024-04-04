@@ -20,14 +20,14 @@ async def start(event: NewMessage.Event) -> NoReturn:
         message=START_MESSAGE,
         buttons=[
             [
-                Button.inline(text="Now"),
-                Button.inline(text="Today"),
-                Button.inline(text="Tomorrow"),
+                Button.text("Now", resize=True),
+                Button.text("Today", resize=True),
+                Button.text("Tomorrow", resize=True),
             ],
             [
-                Button.inline(text="Week"),
-                Button.inline(text="Schedule forecast"),
-                Button.inline(text="Settings"),
+                Button.text("Week", resize=True),
+                Button.text("Schedule forecast", resize=True),
+                Button.text("Settings", resize=True),
             ],
         ],
     )
@@ -45,7 +45,7 @@ async def current_forecast(event: NewMessage.Event) -> NoReturn:
     formatted_forecast_template = render_current_forecast(forecast)
 
     await event.client.send_message(
-        entity=event.chat_id, message=formatted_forecast_template
+        entity=event.chat_id, message=formatted_forecast_template,
     )
 
     raise StopPropagation
