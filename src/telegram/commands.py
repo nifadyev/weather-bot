@@ -9,7 +9,6 @@ from renderers import render_current_forecast
 
 
 async def start(event: NewMessage.Event) -> NoReturn:
-    # TODO: decorator with common check
     if not event.chat_id:
         raise
 
