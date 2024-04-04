@@ -1,27 +1,18 @@
 import os
-import factory
 from faker import Faker
 import pytest
 
-from telethon.events import NewMessage
-from telethon.tl.patched import Message
-from schemas import Alert, CurrentWeather, DailyTemperatures, DailyWeather, OWMWeather, WeatherSummary
+from schemas import (
+    Alert,
+    CurrentWeather,
+    DailyTemperatures,
+    DailyWeather,
+    OWMWeather,
+    WeatherSummary,
+)
 
 fake = Faker()
 
-class MessageFactory(factory.Factory):
-    class Meta:
-        model = Message
-
-    id = 1
-    peer_id = 2
-    message: str = fake.text()
-
-class EventFactory(factory.Factory):
-    class Meta:
-        model = NewMessage.Event
-
-    message = factory.SubFactory(MessageFactory)
 
 @pytest.fixture
 def set_owm_api_env_variables():
@@ -29,6 +20,7 @@ def set_owm_api_env_variables():
     os.environ["OPENWEATHERMAP_API_KEY"] = "fake_app_id"
     os.environ["LATITUDE"] = "12.3456789"
     os.environ["LONGITUDE"] = "98.7654321"
+
 
 @pytest.fixture
 def fake_owmweather() -> OWMWeather:
@@ -51,6 +43,4 @@ def fake_owmweather() -> OWMWeather:
         start_time=1711522800,
         end_time=1711598400,
     )
-    return OWMWeather(
-        current=current_weather, daily=[daily_weather], alerts=[alert]
-    )
+    return OWMWeather(current=current_weather, daily=[daily_weather], alerts=[alert])
