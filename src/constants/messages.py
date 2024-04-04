@@ -8,16 +8,14 @@ I provide actual (so called "feels" like") weather forecast by request or by per
 I am in beta so please do not expect seamless and bug-free experience
 """
 
-CURRENT_FORECAST_TEMPLATE_EN: str = """
-{icon} **{summary}{alert}**
-
-Now feels like {current_temperature}℃, {current_summary}
-
-**Today's weather forecast**
-Morning: {morning_temperature}℃
-Day: {day_temperature}℃
-Night: {night_temperature}℃
-"""
+CURRENT_FORECAST_TEMPLATE_EN: str = (
+    "**Now feels like {current_temperature}℃, {current_summary}**\n\n"
+    "**Weather forecast (next 24 hours)**\n"
+    "{icon} {summary}{alert}\n"
+    "Morning: {morning_temperature}℃\n"
+    "Day: {day_temperature}℃\n"
+    "Night: {night_temperature}℃"
+)
 
 # ? Add Default icon with ? mark
 # ? Or Enum
