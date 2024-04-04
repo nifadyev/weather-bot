@@ -1,8 +1,8 @@
 from constants.messages import CURRENT_FORECAST_TEMPLATE_EN, ICON_ID_TO_EMOJI
-from schemas import OWMWeather
+from schemas import Alert, OWMWeather
 
 
-def render_alerts(alerts) -> str:
+def render_alerts(alerts: list[Alert]) -> str:
     """Usually, only first item is localized."""
     if alerts and (alert_description := alerts[0].description):
         return f", {alert_description.lower()}"
