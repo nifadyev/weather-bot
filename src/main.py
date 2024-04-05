@@ -2,7 +2,6 @@ import os
 from telethon import TelegramClient
 from telethon.events import NewMessage
 from dotenv import load_dotenv
-from telethon import events
 
 from telegram.commands import current_forecast, now_is_pressed, start
 
@@ -23,7 +22,7 @@ def _add_event_handlers(client: TelegramClient) -> None:
         callback=current_forecast, event=NewMessage(pattern="/now")
     )
     client.add_event_handler(
-        callback=now_is_pressed, event=NewMessage(pattern="Now")
+        callback=now_is_pressed, event=NewMessage(pattern=r"Now$")
     )
     # bot.build_reply_markup - for building keyboard with buttons
 
