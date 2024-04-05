@@ -2,14 +2,10 @@ from mashumaro.mixins.orjson import DataClassORJSONMixin
 from mashumaro import field_options
 from dataclasses import field, dataclass
 
-from telegram.helpers import escape_reserved_symbols
-
 
 def deserialize_temperature(raw_temperature: float) -> str:
-    """Convert temperature to int and escape reserved Telegram symbols."""
-    temperature_repr = str(int(raw_temperature))
-
-    return escape_reserved_symbols(temperature_repr)
+    """Convert temperature to int repr."""
+    return str(int(raw_temperature))
 
 
 @dataclass(frozen=True)

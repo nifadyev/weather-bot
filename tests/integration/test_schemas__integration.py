@@ -10,7 +10,7 @@ from tests.constants import OWM_RESPONSE_FRAGMENT
 
 def test_daily_temperatures():
     raw_json = '{"day": 6.35, "eve": 1.04, "morn": -0.13, "night": -2.47}'
-    expected_schema = DailyTemperatures(morning="0", day="6", night="\\-2")
+    expected_schema = DailyTemperatures(morning="0", day="6", night="-2")
 
     assert DailyTemperatures.from_json(raw_json) == expected_schema
 
@@ -85,8 +85,8 @@ def test_daily_weather():
     expected_schema = DailyWeather(
         uv_index=1,
         weather=[WeatherSummary(description="Light rain", icon_id="04d")],
-        feels_like=DailyTemperatures(morning="\\-2", day="2", night="\\-3"),
-        temp=DailyTemperatures(morning="0", day="3", night="\\-1"),
+        feels_like=DailyTemperatures(morning="-2", day="2", night="-3"),
+        temp=DailyTemperatures(morning="0", day="3", night="-1"),
         summary="Expect a day of partly cloudy with clear spells",
     )
 
@@ -105,8 +105,8 @@ def test_owmweather():
     daily_weather = DailyWeather(
         uv_index=1,
         weather=[WeatherSummary(description="Light rain", icon_id="04d")],
-        feels_like=DailyTemperatures(morning="\\-2", day="2", night="\\-3"),
-        temp=DailyTemperatures(morning="0", day="3", night="\\-1"),
+        feels_like=DailyTemperatures(morning="-2", day="2", night="-3"),
+        temp=DailyTemperatures(morning="0", day="3", night="-1"),
         summary="Expect a day of partly cloudy with clear spells",
     )
     alert = Alert(
@@ -157,8 +157,8 @@ def test_owmweather_default_alerts():
     daily_weather = DailyWeather(
         uv_index=1,
         weather=[WeatherSummary(description="Light rain", icon_id="04d")],
-        feels_like=DailyTemperatures(morning="\\-2", day="2", night="\\-3"),
-        temp=DailyTemperatures(morning="0", day="3", night="\\-1"),
+        feels_like=DailyTemperatures(morning="-2", day="2", night="-3"),
+        temp=DailyTemperatures(morning="0", day="3", night="-1"),
         summary="Expect a day of partly cloudy with clear spells",
     )
     expected_schema = OWMWeather(current=current_weather, daily=[daily_weather])

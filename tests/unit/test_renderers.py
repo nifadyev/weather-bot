@@ -37,7 +37,7 @@ def test_render_current_forecast(fake_owmweather: OWMWeather):
         "☁️ Expect a day of partly cloudy with clear spells, black ice\n"
         "Morning: 0℃\n"
         "Day: 3℃\n"
-        "Night: \\-1℃"
+        "Night: -1℃"
     )
 
     assert render_current_forecast(fake_owmweather) == expected_value

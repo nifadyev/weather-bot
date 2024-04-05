@@ -33,8 +33,8 @@ def fake_owmweather() -> OWMWeather:
     daily_weather = DailyWeather(
         uv_index=1,
         weather=[WeatherSummary(description="Light rain", icon_id="04d")],
-        feels_like=DailyTemperatures(morning="\\-2", day="2", night="\\-3"),
-        temp=DailyTemperatures(morning="0", day="3", night="\\-1"),
+        feels_like=DailyTemperatures(morning="-2", day="2", night="-3"),
+        temp=DailyTemperatures(morning="0", day="3", night="-1"),
         summary="Expect a day of partly cloudy with clear spells",
     )
     alert = Alert(
