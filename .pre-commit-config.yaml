@@ -1,18 +1,18 @@
 exclude: \.svg$
-default_stages: [commit]
+default_stages: [pre-commit]
 default_language_version:
     python: python3.11
 
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: mixed-line-ending
 # Spell Checker
 -   repo: https://github.com/crate-ci/typos
-    rev: v1.18.2
+    rev: v1
     hooks:
     -   id: typos
         args: []
@@ -23,7 +23,7 @@ repos:
     -   id: gitlint
 # Detect hardcoded secrets
 -   repo: https://github.com/zricethezav/gitleaks
-    rev: v8.18.2
+    rev: v8.30.0
     hooks:
       - id: gitleaks
 
